@@ -1,4 +1,5 @@
 # solvesql
+#### 하루에 한 문제씩 꾸준히!
 시작 : 2023년 11월 28일
 종료 : ~
 
@@ -12,4 +13,12 @@
 
 `
 select * from points
+`
+
+### 일부 데이터 조회하기
+
+`
+SELECT * 
+FROM POINTS
+WHERE QUARTET = 'I'
 `
