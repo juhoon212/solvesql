@@ -30,3 +30,15 @@ FROM points
 WHERE quartet = 'I'
 ORDER BY y
 `
+
+### 데이터 그룹으로 묶기
+
+`
+SELECT quartet,
+        ROUND(AVG(x), 2) AS x_mean,
+        ROUND(VARIANCE(x), 2) AS x_var,
+        ROUND(AVG(Y), 2) AS y_mean,
+        ROUND(VARIANCE(Y), 2) AS y_var
+FROM points
+GROUP BY quartet;
+`
