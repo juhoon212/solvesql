@@ -22,3 +22,11 @@ SELECT *
 FROM POINTS
 WHERE QUARTET = 'I'
 `
+
+### 데이터 정렬하기
+`
+SELECT *
+FROM points
+WHERE quartet = 'I'
+ORDER BY y
+`
