@@ -42,3 +42,17 @@ SELECT quartet,
 FROM points
 GROUP BY quartet;
 `
+
+### 특정 컬럼만 조회하기
+`
+SELECT X,Y
+FROM points
+`
+
+### 최근 올림픽이 개최된 도시
+`
+SELECT year, Upper(SUBSTRING(city,1,3)) as city
+FROM GAMES
+WHERE YEAR >= 2000
+order by year desc
+`
