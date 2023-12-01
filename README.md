@@ -56,3 +56,11 @@ FROM GAMES
 WHERE YEAR >= 2000
 order by year desc
 `
+
+### 우리 플랫폼에 정착한 판매자 1
+`
+SELECT seller_id, COUNT(DISTINCT(ORDER_ID)) AS orders
+FROM olist_order_items_dataset
+GROUP BY seller_id
+HAVING orders >= 100;
+`
