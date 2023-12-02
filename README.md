@@ -64,3 +64,12 @@ FROM olist_order_items_dataset
 GROUP BY seller_id
 HAVING orders >= 100;
 `
+
+### 최고의 근무일을 찾아라
+`
+SELECT MAX(day) AS day, SUM(round(tip,2)) AS tip_daily
+FROM tips
+GROUP BY day
+ORDER BY tip_daily DESC
+limit 1
+`
