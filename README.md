@@ -82,3 +82,14 @@ SELECT
 FROM
   olist_orders_dataset
 `
+
+### 많이 주문한 테이블 찾기
+
+`
+SELECT * 
+FROM tips
+WHERE total_bill > (
+    SELECT AVG(total_bill)
+    FROM tips
+)
+`
