@@ -73,3 +73,12 @@ GROUP BY day
 ORDER BY tip_daily DESC
 limit 1
 `
+
+### 첫 주문과 마지막 주문
+`
+SELECT
+  DATE(MAX(order_purchase_timestamp)) AS last_order_date,
+  DATE(MIN(order_purchase_timestamp)) AS first_order_date
+FROM
+  olist_orders_dataset
+`
