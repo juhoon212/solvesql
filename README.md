@@ -93,3 +93,14 @@ WHERE total_bill > (
     FROM tips
 )
 `
+
+### 레스토랑의 일일 평균 매출액 계산하기
+
+`
+SELECT ROUND(AVG(PRICE), 2) AS avg_sales
+from (
+    SELECT SUM(total_bill) AS PRICE
+    FROM tips
+    GROUP BY day
+) 
+`
