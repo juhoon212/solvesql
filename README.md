@@ -104,3 +104,10 @@ from (
     GROUP BY day
 ) 
 `
+
+### 레스토랑의 영업일
+
+`
+SELECT DISTINCT(day) AS day_of_week
+FROM tips
+`
