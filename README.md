@@ -11,29 +11,29 @@
 
 ### 모든 데이터 조회하기
 
-`
+```
 select * from points
-`
+```
 
 ### 일부 데이터 조회하기
 
-`
+```
 SELECT * 
 FROM POINTS
 WHERE QUARTET = 'I'
-`
+```
 
 ### 데이터 정렬하기
-`
+```
 SELECT *
 FROM points
 WHERE quartet = 'I'
 ORDER BY y
-`
+```
 
 ### 데이터 그룹으로 묶기
 
-`
+```
 SELECT quartet,
         ROUND(AVG(x), 2) AS x_mean,
         ROUND(VARIANCE(x), 2) AS x_var,
@@ -41,69 +41,69 @@ SELECT quartet,
         ROUND(VARIANCE(Y), 2) AS y_var
 FROM points
 GROUP BY quartet;
-`
+```
 
 ### 특정 컬럼만 조회하기
-`
+```
 SELECT X,Y
 FROM points
-`
+```
 
 ### 최근 올림픽이 개최된 도시
-`
+```
 SELECT year, Upper(SUBSTRING(city,1,3)) as city
 FROM GAMES
 WHERE YEAR >= 2000
 order by year desc
-`
+```
 
 ### 우리 플랫폼에 정착한 판매자 1
-`
+```
 SELECT seller_id, COUNT(DISTINCT(ORDER_ID)) AS orders
 FROM olist_order_items_dataset
 GROUP BY seller_id
 HAVING orders >= 100;
-`
+```
 
 ### 최고의 근무일을 찾아라
-`
+```
 SELECT MAX(day) AS day, SUM(round(tip,2)) AS tip_daily
 FROM tips
 GROUP BY day
 ORDER BY tip_daily DESC
 limit 1
-`
+```
 
 ### 첫 주문과 마지막 주문
-`
+```
 SELECT
   DATE(MAX(order_purchase_timestamp)) AS last_order_date,
   DATE(MIN(order_purchase_timestamp)) AS first_order_date
 FROM
   olist_orders_dataset
-`
+```
 
 ### 많이 주문한 테이블 찾기
 
-`
+```
 SELECT * 
 FROM tips
 WHERE total_bill > (
     SELECT AVG(total_bill)
     FROM tips
 )
-`
+```
 
 ### 레스토랑의 일일 평균 매출액 계산하기
 
-`
+```
 SELECT ROUND(AVG(PRICE), 2) AS avg_sales
 from (
     SELECT SUM(total_bill) AS PRICE
     FROM tips
     GROUP BY day
 ) 
-`
+```
 
 ### 레스토랑의 영업일
 
@@ -111,3 +111,12 @@ from (
 SELECT DISTINCT(day) AS day_of_week
 FROM tips
 `
+
+### 두 테이블 결합하기
+```
+SELECT DISTINCT(B.athlete_id)
+FROM events A join records B 
+              on A.id = B.event_id
+WHERE A.sport = 'Golf'
+
+```
