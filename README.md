@@ -132,3 +132,14 @@ FROM tips
 GROUP BY day, time
 ORDER BY day, time
 ```
+
+### 일별 블로그 방문자 수 집계
+
+```
+SELECT event_date_kst AS dt, count(DISTINCT(user_pseudo_id)) as users
+FROM ga
+WHERE int_value >= 1 
+          AND event_date_kst BETWEEN '2021-08-02' AND '2021-08-09'
+GROUP BY event_date_kst
+ORDER BY dt
+```
