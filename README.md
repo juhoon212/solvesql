@@ -143,3 +143,13 @@ WHERE int_value >= 1
 GROUP BY event_date_kst
 ORDER BY dt
 ```
+
+### 우리 플랫폼에 정착한 판매자 2
+```
+SELECT seller_id, count(DISTINCT(order_id)) as orders
+FROM olist_order_items_dataset
+where price >= 50
+group by seller_id
+having orders >= 100
+order by orders desc
+```
