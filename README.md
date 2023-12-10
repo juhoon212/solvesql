@@ -153,3 +153,13 @@ group by seller_id
 having orders >= 100
 order by orders desc
 ```
+
+### 레스토랑의 일일 매출
+
+```
+SELECT day, SUM(total_bill) AS revenue_daily
+FROM tips
+GROUP BY day
+HAVING revenue_daily > 1000
+order by revenue_daily desc
+```
