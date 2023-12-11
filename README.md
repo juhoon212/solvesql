@@ -163,3 +163,15 @@ GROUP BY day
 HAVING revenue_daily > 1000
 order by revenue_daily desc
 ```
+
+### 버뮤다 삼각지대에 들어가버린 택배
+
+```
+SELECT date(order_delivered_carrier_date) AS delivered_carrier_date,
+        count(*) as orders 
+FROM olist_orders_dataset
+WHERE order_delivered_customer_date is null AND
+      date(order_delivered_carrier_date) BETWEEN '2017-01-01' AND '2017-01-31'
+GROUP BY delivered_carrier_date
+order by delivered_carrier_date
+```
