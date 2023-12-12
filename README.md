@@ -175,3 +175,14 @@ WHERE order_delivered_customer_date is null AND
 GROUP BY delivered_carrier_date
 order by delivered_carrier_date
 ```
+
+### 쇼핑몰 일일 매출액
+```
+SELECT date(B.order_purchase_timestamp) as dt,
+       Round(sum(payment_value), 2) as revenue_daily
+FROM olist_order_payments_dataset A JOIN olist_orders_dataset B
+                              ON A.order_id = B.order_id
+WHERE date(dt) >= '2018-01-01'
+group by dt
+order by dt
+```
