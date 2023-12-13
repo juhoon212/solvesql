@@ -186,3 +186,14 @@ WHERE date(dt) >= '2018-01-01'
 group by dt
 order by dt
 ```
+
+### 점검이 필요한 자전거
+
+```
+SELECT bike_id
+FROM rental_history
+WHERE DATE(rent_at) BETWEEN '2021-01-01' AND '2021-01-31'
+GROUP BY bike_id
+HAVING sum(distance) >= 50000
+```
+
