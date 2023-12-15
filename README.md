@@ -197,3 +197,16 @@ GROUP BY bike_id
 HAVING sum(distance) >= 50000
 ```
 
+### 레스토랑의 대목
+
+```
+select *
+FROM tips
+where day in (
+    SELECT day
+    FROM tips
+    group by day
+    having sum(total_bill) >= 1500  
+)
+```
+
