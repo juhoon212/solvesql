@@ -210,3 +210,12 @@ where day in (
 )
 ```
 
+### 레스토랑의 요일별 VIP 
+
+```
+SELECT * 
+FROM tips
+GROUP BY day
+HAVING MAX(total_bill)
+```
+
