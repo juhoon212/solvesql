@@ -228,3 +228,20 @@ HAVING MAX(total_bill)
     WHERE A.death_year <> ''
      AND B.artist_id IS NULL
 ```
+
+### 멘토링 짝궁 테스트
+
+```
+SELECT e1.employee_id as mentee_id,
+        e1.name as mentee_name,
+        e2.employee_id as mentor_id,
+        e2.name as mentor_name
+FROM (
+  SELECT *
+  FROM employees
+  WHERE STRFTIME('%Y%m%d',join_date) BETWEEN '20210901' AND '20211231'
+) e1 JOIN employees e2
+      ON e1.department != e2.department
+WHERE STRFTIME('%Y%m%d',e2.join_date) <= '20191231'
+order by mentee_id, mentor_id
+```
