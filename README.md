@@ -245,3 +245,17 @@ FROM (
 WHERE STRFTIME('%Y%m%d',e2.join_date) <= '20191231'
 order by mentee_id, mentor_id
 ```
+
+### 쇼핑몰 일일 매출액과 ARPPU
+
+```
+SELECT  date(order_purchase_timestamp) as dt,
+        count(DISTINCT(A.customer_id)) as pu,
+        SUM(payment_value) as revenue_daily,
+        ROUND(SUM(B.payment_value)/COUNT(distinct A.customer_id),2) AS arppu
+FROM olist_orders_dataset A JOIN olist_order_payments_dataset B
+                            ON A.order_id = B.order_id
+WHERE dt >= '2018-01-01'
+GROUP BY dt
+ORDER BY dt
+```
