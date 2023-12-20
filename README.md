@@ -259,3 +259,22 @@ WHERE dt >= '2018-01-01'
 GROUP BY dt
 ORDER BY dt
 ```
+### 배송 예정일 예측 성공과 실패
+
+```
+SELECT date(order_purchase_timestamp) AS purchase_date,
+        count(CASE
+             WHEN order_delivered_customer_date < order_estimated_delivery_date
+             THEN order_id
+             END) AS 'success',
+        count(CASE
+             WHEN order_delivered_customer_date >= order_estimated_delivery_date
+             THEN order_id
+             END) AS 'fail'
+FROM olist_orders_dataset
+where date(order_purchase_timestamp) between '2017-01-01' AND '2017-01-31'
+group by purchase_date
+order by purchase_date
+
+```
+
