@@ -278,3 +278,22 @@ order by purchase_date
 
 ```
 
+
+### 지역별 주문의 특징
+
+```
+SELECT A.Region,
+      sum(CASE WHEN category = 'Furniture' THEN A.orderId END) as Furniture,
+      sum(CASE WHEN category = 'Office Supplies' THEN A.orderId END) as 'Office Supplies',
+      sum(CASE WHEN category = 'Technology' THEN A.orderId END) as Technology
+FROM (
+  SELECT region as 'Region',
+          category,
+          count(DISTINCT(order_id)) as orderId
+  FROM records
+  GROUP BY region, category
+) as A
+group by A.Region
+order by A.Region
+```
+
