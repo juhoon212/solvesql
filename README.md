@@ -309,3 +309,18 @@ FROM    olist_order_payments_dataset
 WHERE payment_type = 'credit_card'
 group by payment_installments
 ```
+ 
+### 복수 국적 메달 수상한 선수 찾기
+
+```
+    SELECT name
+    FROM games g JOIN records r
+                    ON g.id = r.game_id
+                  JOIN athletes a
+                    ON r.athlete_id = a.id
+    WHERE year >= 2000
+         AND medal is not NULL
+    GROUP BY r.athlete_id
+    HAVING count(DISTINCT team_id) >= 2
+    order by name
+```
